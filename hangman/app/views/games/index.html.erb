@@ -1,0 +1,25 @@
+<h1>Hangman</h1>
+
+<div ng-controller="gameCtrl">
+
+<form action="" ng-hide="hide" ng-submit="inputWord()">
+	<input type="text" ng-model="secretWord" placeholder="Type Secret Word Here">
+	<button>Submit</button>
+</form>
+
+<div class="row game-container">
+	<div class="col-xs-6">
+		<div class="letter" ng-repeat="secret in secrets track by $index">{{secret}}</div>
+	</div>
+
+	<div class="col-xs-6">
+		<div class="keyboard" ng-repeat='letter in letters'>
+			{{letter | uppercase}}
+		</div>
+	</div>
+</div>
+
+{{secretWord}}
+{{secrets}}
+
+</div>
