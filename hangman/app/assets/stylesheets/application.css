@@ -15,6 +15,37 @@
  *= require_self
  */
 
+#mySvg {
+	width: 425px;
+	height: 500px;
+/*	background-color: gray;*/
+}
+
+.letter-show.ng-hide {
+	display: block !important;
+	opacity: 0;
+	height: 1.5em;
+	width: .75em;
+} 
+
+.underScore {
+	width: .75em;
+	height: 2em;
+	border-top: 2px solid black;
+}
+
+.popup{
+	z-index: 2;
+	position: absolute;
+	left: 25%;
+	top: 5%;
+}
+
+.letter {
+	float: left;
+	font-size: 2em;
+	margin-right: 1em;
+}
 
 .game-container {
 	
