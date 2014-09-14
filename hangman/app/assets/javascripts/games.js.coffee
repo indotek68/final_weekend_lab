@@ -7,6 +7,9 @@ GameApp = angular.module "GameApp", ['ui.bootstrap']
 GameApp.controller "gameCtrl", ['$scope', ($scope) ->
 	
 	$scope.secrets = []
+	counter = 0
+	hintCounter = 0
+
 
 	$scope.letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n",'o','p','q','r','s','t','u','v','w','x','y','z']
 
@@ -21,6 +24,9 @@ GameApp.controller "gameCtrl", ['$scope', ($scope) ->
 		$scope.showKeys = {}
 		$scope.letters.forEach (keys) ->
 			$scope.showKeys[keys] = true
+		$scope.hangman = {}
+		$scope.hint = {}
+		$scope.hint[0] = true
 
 	$scope.letterClick = ->
 		index = $scope.secrets.indexOf(this.letter)
@@ -33,9 +39,31 @@ GameApp.controller "gameCtrl", ['$scope', ($scope) ->
 					count++
 					if count == Object.keys($scope.showLetter).length
 						$scope.winner = true
+		else
+			# console.log $scope.hangman
+			# console "counter "+ counter
+			$scope.hangman[counter] = true
+			$scope.showKeys[this.letter] = false
+			counter++
+			if $scope.hangman[5] == true
+				$scope.loser = true
 
-	
-				
+	$scope.hintButton = ->
+		$scope.hintBox = true
+		hintCounter++
+		$scope.hint[hintCounter-1] = false
+		$scope.hint[hintCounter] = true
 
-		console.log index
+	$scope.closeBox = ->
+		$scope.hintBox = false
+
+	$scope.resetGame = ->
+		$scope.secrets = []
+		$scope.winner = false
+		$scope.loser = false
+		$scope.hide = false
+		$scope.secretWord = ""
+		counter = 0
+		hintCounter = 0
+
 ]
